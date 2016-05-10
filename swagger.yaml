@@ -1,0 +1,114 @@
+swagger: '2.0'
+
+info:
+  version: "0.0.0"
+  title: User Crud
+
+paths:
+  /user/{userid}:
+    get:
+      description: |
+        Gets specific user
+      parameters:
+        -
+          in: path
+          name: userid
+          description:  The id of the User
+          required: true
+          type: integer
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/UserResponse'
+        404:
+          description: User not found
+    delete:
+      description: |
+        Deletes specific user
+      parameters:
+        -
+          in: path
+          name: userid
+          description:  The id of the User
+          required: true
+          type: integer
+      responses:
+        204:
+          description: Successful response
+        404:
+          description: User not found
+        500:
+          description: General server error while processing the rqeuest
+    put:
+      description: |
+        Creates new user entry
+      parameters:
+        -
+          in: path
+          name: userid
+          description:  The id of the User
+          required: true
+          type: integer
+        - name: user
+          in: body     
+          schema:
+            $ref:  '#/definitions/User'
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref:  '#/definitions/UserResponse'
+        404:
+          description: User not found
+        500:
+          description: General server error while processing the rqeuest
+
+  /user/:
+    post:
+      description: |
+        Creates new user entry
+      parameters:
+        - name: user
+          in: body     
+          schema:
+            $ref:  '#/definitions/User'
+          required: true
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref:  '#/definitions/UserResponse'
+        400:
+          description: Bad request data
+        500:
+          description: General server error while processing the rqeuest
+    
+  
+definitions:
+  User:
+    type: object
+    properties:
+      email:
+        type: string
+      forname:
+        type: string
+      surname:
+        type: string
+
+  UserResponse:
+    type: object
+    properties:
+      email:
+        type: string
+      forname:
+        type: string
+      surname:
+        type: string
+      created:
+        type: string
+      id:
+        type: integer
+
+  

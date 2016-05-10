@@ -1,0 +1,7 @@
+CREATE TABLE `user` (
+`id` INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+`email` VARCHAR(50) NOT NULL,
+`forename` VARCHAR(50) NOT NULL,
+`surname` VARCHAR(50),
+`created` DATETIME
+);
